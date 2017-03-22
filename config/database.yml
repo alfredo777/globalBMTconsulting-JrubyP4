@@ -1,0 +1,23 @@
+
+systarget2015fruby: &systarget2015fruby
+  adapter:  jdbcmssql
+  url:      jdbc:jtds:sqlserver://107.191.55.96:1433;DatabaseName=Systarget2015
+  username: SysTarget2015Usr
+  password: systarget2015systarget
+
+development:
+  <<: *systarget2015fruby
+
+test:
+  <<: *systarget2015fruby
+
+production:
+  <<: *systarget2015fruby
+
+operative:
+  adapter: jdbcsqlite3
+  pool: 5
+  timeout: 5000
+  database: db/operative.sqlite3
+
+
