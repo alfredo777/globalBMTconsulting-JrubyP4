@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321194133) do
+ActiveRecord::Schema.define(version: 20170330185323) do
 
   create_table "NCBancos", primary_key: "BancoId", force: true do |t|
     t.string   "BancoNombre",            limit: 100, null: false
@@ -1076,6 +1076,9 @@ ActiveRecord::Schema.define(version: 20170321194133) do
     t.string   "salt"
     t.datetime "created_at",                limit: 23
     t.datetime "updated_at",                limit: 23
+    t.string   "avatar"
+    t.string   "bussines_avatar"
+    t.string   "email"
   end
 
 end

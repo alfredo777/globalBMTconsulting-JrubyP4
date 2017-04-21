@@ -1,2 +1,28 @@
-<h1>Admin#users</h1>
-<p>Find me in app/views/admin/users.html.erb</p>
+<h1>Usuarios</h1>
+<table class="table table-bordered">
+	<caption>Usuarios</caption>
+	<thead>
+		<tr>
+		    <th width="105px">Avatar</th>
+			<th>Nombre</th>
+			<th>Email</th>
+			<th colspan="3" rowspan="" headers="" scope=""></th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@users.each do |u| %>
+		<tr>
+		    <td> <%= image_tag u.avatar.xsmall %></td>
+			<td><%= "#{u.first_name} #{u.last_name}"%></td>
+			<td><%= "#{u.email}"%></td>
+			<td> <%= link_to destroy_user_path(id: u.id), data: { confirm: '¿Estas segura de eliminar el usuario?' } do %> Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i>  <%end%> </td>
+			<td> <%=link_to edit_user_path(id: u.id)  do %> Editar <i class="fa fa-pencil" aria-hidden="true"></i> <%end%> </td>
+			<td> <%=link_to agenda_usuario_path(Mail: "#{u.email}") do %>
+			     Agenda <i class="fa fa-address-book" aria-hidden="true"></i>
+			     <%end%>
+			</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+<%= will_paginate @users, :previous_label => '← Anterior', :next_label => 'Siguiente →', renderer: BootstrapPagination::Rails %>

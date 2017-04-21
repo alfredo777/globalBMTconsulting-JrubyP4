@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+u = UserApp.create(first_name: "Alfredo", last_name: "Reyes", linkedin: "string", barcode_presentation_card: "string", presentation_card_front: "string", presentation_card_behind: "string", password: "123456", salt: "asd", email: "alfredo@rockstars.mx")

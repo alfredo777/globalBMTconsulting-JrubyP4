@@ -1,19 +1,158 @@
 class ApiController < ApplicationController
   helper_method :check_conection
   helper_method :intent_conection
+  skip_before_filter :verify_authenticity_token  
 
 
   def index
   	check_conection
+=begin
   	@n = Nccliente.all
   	@n.each do |c|
-  	  	puts " #{c.ClienteId} | #{c.ClienteNombre} | #{c.SucursalId} | #{c.Mail} "
+  	  	puts " #{c.ClienteId} | #{c.ClienteNombre} | #{c.SucursalId} | #{c.Mail}  "
+
+        cou = Ntsubproyecto.where(ClienteId: c.ClienteId)
+
+        puts ">>>>>>>>>>>>>>>>>>>>>>#{cou.count}"
+
+        cou.each do |access_agenda|
+        ccu = Ntsubproyectosagenda.where(SubProyectoId: access_agenda.SubProyectoId)
+
+        puts "**********************#{ccu.count}"
+
+       end
+
+
   	end
 
     #####
 
     @u = UserApp.count
     puts "Contador #{@u}"
+=end
+  end
+
+
+  def agenda_usuario
+    @cliente = Nccliente.find_by_Mail(params[:Mail])
+    @subproyectos = Ntsubproyecto.where(ClienteId: @cliente.ClienteId)
+    @proyectos = Ntproyecto.where(ClienteId: @cliente.ClienteId)
+  end
+
+  def agenda_usuario_json
+    @cliente = Nccliente.find_by_Mail(params[:Mail])
+    @subproyectos = Ntsubproyecto.where(ClienteId: @cliente.ClienteId)
+    @proyectos = Ntproyecto.where(ClienteId: @cliente.ClienteId)
+
+
+    sp_to_json = []
+
+    no_relative_agenda = []
+
+    @subproyectos.each do |sp|
+      @ag = agenda(sp) 
+
+      agenda_edited = []
+
+      @ag.each do |ag|
+
+      cc = contacto(ag.ContactoId)
+      agenda_edited.push({
+             id: ag.SubProyectoAgendaId,
+             orden: ag.AgendaOrden,
+             contacto_id: cc.ContactoId,
+             contacto_nombre: cc.ContactoNombre,
+             contacto_telefono: cc.Telefono, 
+             contacto_cargo: cc.Cargo,
+             contacto_empresa: cc.Empresa,
+             contacto_mail: cc.Mail,
+             instrucciones: ag.Instrucciones,
+             fecha_cita: ag.FechaCita,
+             lugar_cita: ag.LugarCita,
+             lugar_cita_2: ag.LugarCita2,
+             lugar_cita_3: ag.LugarCita3,
+             lugar_cita_4: ag.LugarCita4,
+             descripccion: ag.Descripcion
+             })
+      no_relative_agenda.push({
+             id: ag.SubProyectoAgendaId,
+             orden: ag.AgendaOrden,
+             contacto_id: cc.ContactoId,
+             contacto_nombre: cc.ContactoNombre,
+             contacto_telefono: cc.Telefono, 
+             contacto_cargo: cc.Cargo,
+             contacto_empresa: cc.Empresa,
+             contacto_mail: cc.Mail,
+             instrucciones: ag.Instrucciones,
+             fecha_cita: ag.FechaCita,
+             lugar_cita: ag.LugarCita,
+             lugar_cita_2: ag.LugarCita2,
+             lugar_cita_3: ag.LugarCita3,
+             lugar_cita_4: ag.LugarCita4,
+             descripccion: ag.Descripcion
+             })
+      end
+
+
+      sp_to_json.push({
+          id: sp.SubProyectoId,
+          nombre: sp.SubProyectoNombre, 
+          contacto_nombre: sp.ContactoNombre, 
+          contacto_telefono: sp.ContactoTelefono, 
+          contacto_email: sp.ContactoMail, 
+          detalle: sp.Detalle, 
+          objetivos: sp.Objetivos,
+          agenda: agenda_edited
+          })
+    end
+
+    agenda = {
+      perfil: @cliente.Perfil,
+      nombre: @cliente.ClienteNombre,
+      directo: @cliente.EsDirecto,
+      Tel1: @cliente.Telefono1,
+      Tel2: @cliente.Telefono2,
+      Email: @cliente.Mail,
+      subproyectos: sp_to_json
+
+    }
+
+
+    render json: {non_relative: no_relative_agenda, agenda_full: agenda }
+  end
+
+  def verificador_de_password
+    user = UserApp.find_by_email(params[:email])
+    puts "#{params[:password]}"
+    puts "#{params[:email]}"
+ 
+    @pass = Digest::SHA2.hexdigest("#{params[:password]}")
+    puts user.password + "(1"
+    puts @pass + "(2"
+    if user.password.to_s == @pass.to_s
+      n = "Usuario Validado"
+      active = true
+      userz = user
+      avatar_mini = oppen_images(user.avatar.xsmall.url) 
+      avatar_large = oppen_images(user.avatar.full.url)
+      #puts n
+      #puts avatar_mini
+      puts avatar_large
+    else
+      n = "Usuario no validado"
+      active = false
+      userz = ""
+      avatar_mini = ""
+      avatar_large = ""
+      puts n
+    end
+    
+
+    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, notice: n}
+  end
+
+  def create_user_app
+
   end
 
 
@@ -38,5 +177,23 @@ class ApiController < ApplicationController
    puts @base
    puts "******* tables ************"
    puts  ActiveRecord::Base.connection.tables
+  end
+
+  def oppen_images(urlx)
+    if urlx.nil?
+      url = nil
+      else
+      if Rails.env == 'production'
+      filename ||= "#{urlx}"
+      else
+      filename ||= "#{Rails.root}/public#{urlx}"
+      end
+      #url = File.binread(filename)
+      #binary = url.unpack('B*')
+      #binary = binary[0]
+      #url = Base64.encode64(url)
+      url = Base64.encode64(open(filename).to_a.join)
+    end
+    url
   end
 end
