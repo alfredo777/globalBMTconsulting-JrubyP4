@@ -5,31 +5,7 @@ class ApiController < ApplicationController
 
 
   def index
-  	check_conection
-=begin
-  	@n = Nccliente.all
-  	@n.each do |c|
-  	  	puts " #{c.ClienteId} | #{c.ClienteNombre} | #{c.SucursalId} | #{c.Mail}  "
 
-        cou = Ntsubproyecto.where(ClienteId: c.ClienteId)
-
-        puts ">>>>>>>>>>>>>>>>>>>>>>#{cou.count}"
-
-        cou.each do |access_agenda|
-        ccu = Ntsubproyectosagenda.where(SubProyectoId: access_agenda.SubProyectoId)
-
-        puts "**********************#{ccu.count}"
-
-       end
-
-
-  	end
-
-    #####
-
-    @u = UserApp.count
-    puts "Contador #{@u}"
-=end
   end
 
 
