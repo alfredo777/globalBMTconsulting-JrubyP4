@@ -153,5 +153,8 @@ DEPENDENCIES
   will_paginate
   will_paginate-bootstrap
 
+RUBY VERSION
+   ruby 2.3.1p0 (jruby 9.1.5.0)
+
 BUNDLED WITH
    1.14.6
