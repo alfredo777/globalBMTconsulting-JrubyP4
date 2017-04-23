@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
-
-
+ruby '2.2.1', :engine => 'jruby', :engine_version => '9.1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use jdbcsqlite3 as the database for Active Record
