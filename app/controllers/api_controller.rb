@@ -101,7 +101,7 @@ class ApiController < ApplicationController
     user = UserApp.find_by_email(params[:email])
     puts "#{params[:password]}"
     puts "#{params[:email]}"
- 
+     
     @pass = Digest::SHA2.hexdigest("#{params[:password]}")
     puts user.password + "(1"
     puts @pass + "(2"
@@ -160,7 +160,8 @@ class ApiController < ApplicationController
       url = nil
       else
       if Rails.env == 'production'
-      filename ||= "#{urlx}"
+      filename ||= "#{Rails.root}/public#{urlx}"
+      #filename ||= "#{urlx}"
       else
       filename ||= "#{Rails.root}/public#{urlx}"
       end
