@@ -113,7 +113,7 @@ class ApiController < ApplicationController
       avatar_large = oppen_images(user.avatar.full.url)
       #puts n
       #puts avatar_mini
-      puts avatar_large
+      #puts avatar_large
     else
       n = "Usuario no validado"
       active = false
