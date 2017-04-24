@@ -124,7 +124,7 @@ class ApiController < ApplicationController
     end
     
 
-    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, notice: n}
+    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, notice: n}, :callback => params[:callback]
   end
 
   def create_user_app
