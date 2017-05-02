@@ -132,7 +132,7 @@ class ApiController < ApplicationController
   end
 
   def actualizar_avatar
-    user = UserApp.find_by_email(params[:email])
+    user = UserApp.find(params[:id])
     user.avatar = params[:file]
     user.save
 
