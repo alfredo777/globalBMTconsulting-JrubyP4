@@ -131,6 +131,38 @@ class ApiController < ApplicationController
 
   end
 
+  def actualizar_avatar
+    user = UserApp.find_by_email(params[:email])
+    user.avatar = params[:file]
+    user.save
+
+    if user.save
+      noticex = "Avatar cargado correctamente"
+    else
+      noticex = "El avatar no fue agregaco"
+    end
+
+    avatar_mini = oppen_images(user.avatar.xsmall.url) 
+    avatar_large = oppen_images(user.avatar.full.url)
+
+    render json: {notice: noticex, avatar_mini: avatar_mini, avatar_large: avatar_large}
+  end
+
+  def actualizar_usuario
+     @user = UserApp.find(params[:email]) 
+     @user.first_name = params[:first_name] if !params[:first_name].nil?
+     @user.last_name = params[:last_name] if !params[:last_name].nil?
+     @user.linkedin = params[:linkedin] if !params[:linkedin].nil?
+     if params[:password] != ''
+     puts "password modify"
+     @user.password = Digest::SHA2.hexdigest("#{params[:password]}")
+     end
+     @user.save
+
+     render json: {user: user}
+  end
+
+
 
   def check_conection
   	conection = ActiveRecord::Base.connected?
