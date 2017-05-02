@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   get 'verificador_de_password', to: 'api#verificador_de_password', as: :verificador_de_password
   post 'verificador_de_password', to: 'api#verificador_de_password'
 
-  get 'actualizar_avatar', to: 'api#update_avatar', as: :actualizar_avatar
-  post 'actualizar_avatar', to: 'api#update_avatar'
+  get 'actualizar_avatar', to: 'api#actualizar_avatar', as: :actualizar_avatar
+  post 'actualizar_avatar', to: 'api#actualizar_avatar'
 
   get 'actualizar_usuario', to: 'api#actualizar_usuario', as: :actualizar_usuario
   post 'actualizar_usuario', to: 'api#actualizar_usuario'
