@@ -149,15 +149,16 @@ class ApiController < ApplicationController
   end
 
   def actualizar_usuario
-     @user = UserApp.find(params[:email]) 
+     @user = UserApp.find_by_email(params[:email]) 
      @user.first_name = params[:first_name] if !params[:first_name].nil?
      @user.last_name = params[:last_name] if !params[:last_name].nil?
      @user.linkedin = params[:linkedin] if !params[:linkedin].nil?
-     if params[:password] != ''
-     puts "password modify"
-     @user.password = Digest::SHA2.hexdigest("#{params[:password]}")
-     end
      @user.save
+
+     #if params[:password] != ''
+     #puts "password modify"
+     #@user.password = Digest::SHA2.hexdigest("#{params[:password]}")
+     #end
 
      if @user.save
        noticex = "Usuario actualizado correctamente"
