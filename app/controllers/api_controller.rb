@@ -159,7 +159,7 @@ class ApiController < ApplicationController
      end
      @user.save
 
-     if user.save
+     if @user.save
        noticex = "Usuario actualizado correctamente"
        else
        noticex = "El usuario no se ha podido actualizar"
