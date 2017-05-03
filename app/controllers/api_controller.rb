@@ -166,7 +166,7 @@ class ApiController < ApplicationController
        noticex = "El usuario no se ha podido actualizar"
      end
 
-     render json: {user: user, notice: noticex}, :callback => params[:callback]
+     render json: {user: @user.to_json, notice: noticex}, :callback => params[:callback]
   end
 
 
