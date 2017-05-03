@@ -159,7 +159,13 @@ class ApiController < ApplicationController
      end
      @user.save
 
-     render json: {user: user}
+     if user.save
+       noticex = "Usuario actualizado correctamente"
+       else
+       noticex = "El usuario no se ha podido actualizar"
+     end
+
+     render json: {user: user, notice: noticex}, :callback => params[:callback]
   end
 
 
