@@ -109,8 +109,17 @@ class ApiController < ApplicationController
       n = "Usuario Validado"
       active = true
       userz = user
+
+      if File.file?(user.avatar.xsmall.url)
       avatar_mini = oppen_images(user.avatar.xsmall.url) 
+      else
+      avatar_mini = "" 
+      end
+      if File.file?(user.avatar.full.url)
       avatar_large = oppen_images(user.avatar.full.url)
+      else
+      avatar_large = ""
+      end
       puts n
     else
       n = "Usuario no validado"
