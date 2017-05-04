@@ -111,9 +111,7 @@ class ApiController < ApplicationController
       userz = user
       avatar_mini = oppen_images(user.avatar.xsmall.url) 
       avatar_large = oppen_images(user.avatar.full.url)
-      #puts n
-      #puts avatar_mini
-      #puts avatar_large
+      puts n
     else
       n = "Usuario no validado"
       active = false
@@ -124,7 +122,7 @@ class ApiController < ApplicationController
     end
     
 
-    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, notice: n}, :callback => params[:callback]
+    render json: {user: userz.to_json, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, notice: n}, :callback => params[:callback]
   end
 
   def create_user_app
@@ -167,6 +165,42 @@ class ApiController < ApplicationController
      end
 
      render json: {user: @user, notice: noticex}
+  end
+
+  def agregar_comentario
+    @comment = Comment.new
+    @comment.coment_text = params[:coment_text]
+    @comment.attachment = params[:attachment]
+    @comment.ntsub_proyectos_agenda_id = params[:id]
+    @comment.user_app_id = params[:user_app_id]
+    @comment.save
+
+    if @comment.save 
+      url = "#{@comment.attachment.url}"
+      puts url
+      case url.split('.').last  
+      when 'png'
+        datafile = oppen_images(@comment.attachment.url) 
+
+      when 'jpg'
+        datafile = oppen_images(@comment.attachment.url) 
+
+      when 'JPG'
+        datafile = oppen_images(@comment.attachment.url) 
+
+      when 'PNG'
+        datafile = oppen_images(@comment.attachment.url) 
+      else
+        datafile = @comment.attachment.url
+      end
+
+      notice = "Comentario agregado correctamente"
+    else
+       datafile = ""
+       notice = "No se ha podido agregar el Comentario"
+    end
+
+    render json: {user: @comment, notice: notice, datafile: datafile}
   end
 
 

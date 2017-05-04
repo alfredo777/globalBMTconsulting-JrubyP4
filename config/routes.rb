@@ -37,4 +37,8 @@ Rails.application.routes.draw do
   get 'actualizar_usuario', to: 'api#actualizar_usuario', as: :actualizar_usuario
   post 'actualizar_usuario', to: 'api#actualizar_usuario'
 
+
+  get 'agregar_comentario', to: 'api#agregar_comentario', as: :agregar_comentario
+  post 'agregar_comentario', to: 'api#agregar_comentario'
+
 end

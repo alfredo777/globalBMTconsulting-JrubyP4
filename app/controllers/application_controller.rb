@@ -14,4 +14,8 @@ class ApplicationController < ActionController::Base
   def contacto(id)
   	@contacto = Nccontacto.find_by_ContactoId(id)
   end
+
+  def comments(id)
+
+  end
 end

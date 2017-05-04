@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330185323) do
+ActiveRecord::Schema.define(version: 20170503045343) do
 
   create_table "NCBancos", primary_key: "BancoId", force: true do |t|
     t.string   "BancoNombre",            limit: 100, null: false
@@ -1038,11 +1038,12 @@ ActiveRecord::Schema.define(version: 20170330185323) do
   end
 
   create_table "comments", force: true do |t|
-    t.string   "commentable_type"
-    t.integer  "commentable_id",   limit: 4
     t.text     "coment_text"
-    t.datetime "created_at",       limit: 23
-    t.datetime "updated_at",       limit: 23
+    t.datetime "created_at",                limit: 23
+    t.datetime "updated_at",                limit: 23
+    t.string   "attachment"
+    t.integer  "ntsub_proyectos_agenda_id", limit: 4
+    t.integer  "user_app_id",               limit: 4
   end
 
   create_table "images", force: true do |t|
