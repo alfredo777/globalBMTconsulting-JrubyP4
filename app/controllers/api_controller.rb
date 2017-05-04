@@ -48,7 +48,8 @@ class ApiController < ApplicationController
              lugar_cita_2: ag.LugarCita2,
              lugar_cita_3: ag.LugarCita3,
              lugar_cita_4: ag.LugarCita4,
-             descripccion: ag.Descripcion
+             descripccion: ag.Descripcion,
+             comments: comments(ag.SubProyectoAgendaId)
              })
       no_relative_agenda.push({
              id: ag.SubProyectoAgendaId,
@@ -65,7 +66,8 @@ class ApiController < ApplicationController
              lugar_cita_2: ag.LugarCita2,
              lugar_cita_3: ag.LugarCita3,
              lugar_cita_4: ag.LugarCita4,
-             descripccion: ag.Descripcion
+             descripccion: ag.Descripcion,
+             comments: comments(ag.SubProyectoAgendaId)
              })
       end
 
@@ -189,16 +191,16 @@ class ApiController < ApplicationController
       puts url
       case url.split('.').last  
       when 'png'
-        datafile = oppen_images(@comment.attachment.url) 
+        datafile = get_image(@comment.attachment.url) 
 
       when 'jpg'
-        datafile = oppen_images(@comment.attachment.url) 
+        datafile = get_image(@comment.attachment.url) 
 
       when 'JPG'
-        datafile = oppen_images(@comment.attachment.url) 
+        datafile = get_image(@comment.attachment.url) 
 
       when 'PNG'
-        datafile = oppen_images(@comment.attachment.url) 
+        datafile = get_image(@comment.attachment.url) 
       else
         datafile = @comment.attachment.url
       end
