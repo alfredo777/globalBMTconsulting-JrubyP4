@@ -187,31 +187,30 @@ class ApiController < ApplicationController
     @comment.save
 
     if @comment.save 
-      url = "#{@comment.attachment.url}"
-      puts url
-      case url.split('.').last  
-      when 'png'
-        datafile = get_image(@comment.attachment.url) 
-
-      when 'jpg'
-        datafile = get_image(@comment.attachment.url) 
-
-      when 'JPG'
-        datafile = get_image(@comment.attachment.url) 
-
-      when 'PNG'
-        datafile = get_image(@comment.attachment.url) 
-      else
-        datafile = @comment.attachment.url
-      end
-
       notice = "Comentario agregado correctamente"
     else
-       datafile = ""
-       notice = "No se ha podido agregar el Comentario"
+      notice = "No se ha podido agregar el Comentario"
     end
 
-    render json: {user: @comment, notice: notice, datafile: datafile}
+
+    commentx = {
+     id: @comment.id,
+     coment_text: @comment.coment_text,
+     attachment: get_image(@comment.attachment.url),
+     created_at: @comment.created_at
+    }
+
+    puts commentx
+
+    render json: {comment: commentx, notice: notice}
+  end
+
+  def eliminar_comentario
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+
+    render json: {notice: "Comentario eliminado"}
   end
 
 
