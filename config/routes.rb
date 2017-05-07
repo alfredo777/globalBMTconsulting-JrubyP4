@@ -43,4 +43,7 @@ Rails.application.routes.draw do
   get 'eliminar_comentario', to: 'api#eliminar_comentario', as: :eliminar_comentario
   post 'eliminar_comentario', to: 'api#eliminar_comentario'
 
+  get 'actualizar_rating', to: 'api#actualizar_rating', as: :actualizar_rating
+  post 'actualizar_rating', to: 'api#actualizar_rating'
+
 end

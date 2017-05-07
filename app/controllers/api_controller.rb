@@ -215,7 +215,17 @@ class ApiController < ApplicationController
     render json: {notice: "Comentario eliminado"}
   end
 
-  def update_rating
+  def actualizar_rating
+    @rateds = Ntsubproyectosagenda.find(params[:id])
+    @rateds.rating = params[:rating]
+    @rateds.save
+    
+    if @rateds.save
+      notice = "Actualización completa"
+    else
+      notice = "Actualizaión incompleta"
+    end
+    render json: {rate: @rateds.rating, notice: notice}
   end
 
 
