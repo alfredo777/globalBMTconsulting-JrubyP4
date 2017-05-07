@@ -580,21 +580,21 @@ ActiveRecord::Schema.define(version: 20170507184152) do
   end
 
   create_table "NTSubProyectosAgenda", primary_key: "SubProyectoAgendaId", force: true do |t|
-    t.integer  "SubProyectoId",    limit: 8,               null: false
-    t.integer  "AgendaOrden",      limit: 2,               null: false
+    t.integer  "SubProyectoId",    limit: 8,                 null: false
+    t.integer  "AgendaOrden",      limit: 2,                 null: false
     t.integer  "ContactoId",       limit: 8
-    t.string   "Instrucciones",    limit: 500,             null: false
+    t.string   "Instrucciones",    limit: 500,               null: false
     t.datetime "FechaCita",        limit: 23
-    t.string   "LugarCita",        limit: 200,             null: false
-    t.string   "LugarCita2",       limit: 200,             null: false
-    t.string   "LugarCita3",       limit: 200,             null: false
-    t.string   "LugarCita4",       limit: 200,             null: false
-    t.string   "Descripcion",      limit: 500,             null: false
-    t.integer  "UsuarioIdCreador", limit: 8,               null: false
-    t.datetime "FechaCreacion",    limit: 23,              null: false
-    t.integer  "UsuarioIdUltMod",  limit: 8,               null: false
-    t.datetime "FechaUltMod",      limit: 23,              null: false
-    t.integer  "rating",           limit: 4,   default: 3
+    t.string   "LugarCita",        limit: 200,               null: false
+    t.string   "LugarCita2",       limit: 200,               null: false
+    t.string   "LugarCita3",       limit: 200,               null: false
+    t.string   "LugarCita4",       limit: 200,               null: false
+    t.string   "Descripcion",      limit: 500,               null: false
+    t.integer  "UsuarioIdCreador", limit: 8,                 null: false
+    t.datetime "FechaCreacion",    limit: 23,                null: false
+    t.integer  "UsuarioIdUltMod",  limit: 8,                 null: false
+    t.datetime "FechaUltMod",      limit: 23,                null: false
+    t.string   "rating",                       default: "3"
   end
 
   create_table "NTSubProyectosConsultores", primary_key: "SubProyectoId", force: true do |t|
