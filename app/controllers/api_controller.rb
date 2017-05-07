@@ -49,6 +49,7 @@ class ApiController < ApplicationController
              lugar_cita_3: ag.LugarCita3,
              lugar_cita_4: ag.LugarCita4,
              descripccion: ag.Descripcion,
+             rating: ag.rating,
              comments: comments(ag.SubProyectoAgendaId)
              })
       no_relative_agenda.push({
@@ -67,6 +68,7 @@ class ApiController < ApplicationController
              lugar_cita_3: ag.LugarCita3,
              lugar_cita_4: ag.LugarCita4,
              descripccion: ag.Descripcion,
+             rating: ag.rating,
              comments: comments(ag.SubProyectoAgendaId)
              })
       end
@@ -211,6 +213,9 @@ class ApiController < ApplicationController
 
 
     render json: {notice: "Comentario eliminado"}
+  end
+
+  def update_rating
   end
 
 
