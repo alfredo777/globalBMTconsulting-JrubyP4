@@ -1,5 +1,6 @@
 CarrierWave.configure do |config|
   if Rails.env == 'production'
+    Excon.defaults[:ciphers] = 'DEFAULT'
     config.fog_provider = 'fog/aws' 
     config.fog_credentials = {
       # Configuration for Amazon S3 should be made available through an Environment variable.
