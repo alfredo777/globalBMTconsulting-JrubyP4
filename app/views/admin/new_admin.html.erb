@@ -1,0 +1,9 @@
+<h1> Crear un admnistrador </h1>
+<div class="col-md-6">
+	<%= form_tag create_admin_path do -%>
+	<%= text_field_tag 'name', '', placeholder: "Name", class: "form-control" %><br/>
+	<%= email_field_tag 'email', '', placeholder: "Email", class: "form-control" %><br/>
+	<%= password_field_tag 'password', '', placeholder: "Password", class: "form-control" %><br/>
+	<%= submit_tag 'Crear', class: "btn btn-primary" %>
+	<%end%>
+</div>

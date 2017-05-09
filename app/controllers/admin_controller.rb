@@ -1,7 +1,8 @@
 class AdminController < ApplicationController
-
+  before_filter :admin_loggin, except: [:login, :validate]
   def history
   	@users = UserApp.last(10)
+    @admins = AdminUser.last(10)
   end
 
   def create_user
@@ -58,6 +59,96 @@ class AdminController < ApplicationController
   end
 
   def login
+  end
+
+  def log_out
+    session[:admin] = nil
+    redirect_to root_path
+  end
+
+  def validate
+    @admin = AdminUser.find_by_email(params[:email])
+
+    passx = @admin.salt + "#{params[:password]}"
+
+    @pass = Digest::SHA2.hexdigest(passx) 
+    puts "#{@admin.password} === #{@pass}"
+     
+    if @admin.password.to_s == @pass.to_s
+      session[:admin] = @admin.id
+      flash[:notice] = "Ingreso correcto"
+      redirect_to admin_path
+    else
+      session[:admin] = nil
+      flash[:notice] = "Usuario Invalido"
+      redirect_to root_path
+    end
+
+  end
+
+  def admins
+    @admins = AdminUser.all
+  end
+
+  def new_admin
+  end
+
+  def create_admin
+    @admin = AdminUser.new
+
+    salt = SecureRandom.hex(10)
+
+    passx = "#{salt}" + "#{params[:password]}"
+
+    @admin.salt = salt
+    @admin.password = Digest::SHA2.hexdigest("#{passx}")
+    @admin.email = params[:email]
+    @admin.name = params[:name]
+    @admin.save
+
+    if @admin.save
+      flash[:notice] = "Admnistrador creado"
+      redirect_to admins_path
+    else
+      flash[:notice] = "El admnistrador no ha sido creado"
+      redirect_to :back
+    end
+  end
+
+  def admin_update
+    @admin = AdminUser.find(params[:id])
+  end
+
+  def update_admin
+    @admin = AdminUser.find(params[:id])
+    salt = SecureRandom.hex(10)
+    passx = "#{salt}" + "#{params[:password]}"
+    @admin.email = params[:email]
+    if params[:password] != ''
+    @admin.password = passx
+    @admin.salt = salt
+    end
+    @admin.name = params[:name]
+    @admin.save
+
+    flash[:notice] = "El admnistrador no ha actualizado"
+    redirect_to admins_path
+  end
+
+  def destroy_admin
+    @admin = AdminUser.find(params[:id])
+    @admin.destroy
+
+    flash[:notice] = "Se elimina el administrador"
+
+    redirect_to admins_path
+  end
+
+  def admin_loggin
+    if session[:admin] == nil
+      flash[:notice] = "Ingreso no permitido"
+      redirect_to login_path
+    end
   end
 
   def users

@@ -5,7 +5,7 @@ class ApiController < ApplicationController
 
 
   def index
-
+  session[:admin] = nil
   end
 
 

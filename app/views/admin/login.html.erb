@@ -1,2 +1,12 @@
-<h1>Admin#login</h1>
-<p>Find me in app/views/admin/login.html.erb</p>
+<center>
+<h1>Login</h1>
+<div class="col-md-4">
+</div>
+<div class="col-md-4 well center-block">
+<%= form_tag validate_path do -%>
+  <%= email_field_tag 'email', '', placeholder: "Email", class: "form-control" %><br/>
+  <%= password_field_tag 'password', '', placeholder: "Password", class: "form-control" %><br/>
+  <%= submit_tag 'Ingresar', class: "btn btn-primary" %>
+<%end%>
+</div>
+</center>

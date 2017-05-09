@@ -14,9 +14,32 @@ Rails.application.routes.draw do
   get 'admin/destroy_user', as: :destroy_user
   post 'admin/destroy_user'
  
-  get 'admin/login'
+  get 'admin/login', as: :login
+  post 'admin/login'
+
+  get 'admin/validate', as: :validate
+  post 'admin/validate'
 
   get 'admin/users', as: :users
+
+  get 'admin/admins',as: :admins
+
+  get 'admin/new_admin', as: :new_admin
+
+  get 'admin/create_admin', as: :create_admin
+  post 'admin/create_admin'
+
+  get 'admin/admin_update', as: :admin_update
+  post 'admin/admin_update'
+
+  get 'admin/update_admin', as: :update_admin
+  post 'admin/update_admin'
+
+  get 'admin/destroy_admin', as: :destroy_admin
+  post 'admin/destroy_admin'
+
+  get 'admin/log_out', as: :log_out
+  post 'admin/log_out'
 
   get 'admin/calendar_table'
 
@@ -45,5 +68,7 @@ Rails.application.routes.draw do
 
   get 'actualizar_rating', to: 'api#actualizar_rating', as: :actualizar_rating
   post 'actualizar_rating', to: 'api#actualizar_rating'
+
+
 
 end

@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Database Manager For APP</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-static-top">
-  <div class="container">
-    <h3>Lorem ipsum</h3>
-  </div>
-</nav>
-<div class="container">
-<%= yield %>
-</div>
-</body>
+	<head>
+		<title>Database Manager For APP</title>
+		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+	    <% if flash[:notice] %>
+	    <div class="alert alert-info alert-dismissible" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		  <strong><%=flash[:notice]%></strong>
+		</div>
+		<%end%>
+		<nav class="navbar navbar-inverse navbar-static-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<% if session[:admin].nil? %>
+					<%=link_to root_path  do%><h3 style="color:#fff;">BTM Consulting</h3> <%end%>
+					<%else%>
+					<%=link_to admin_path  do%><h3 style="color:#fff;">BTM Consulting</h3> <%end%>
+					<%end%>
+					<% if !session[:admin].nil? %>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><%= link_to log_out_path do %>
+						Salir
+					<%end%></li>
+				</ul>
+			</div>
+			<%end%>
+		</nav>
+		<div class="container">
+			<%= yield %>
+		</div>
+	</body>
 </html>

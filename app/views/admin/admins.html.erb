@@ -1,0 +1,25 @@
+
+<h1> Administradores </h1>
+<%=link_to new_admin_path, class: "btn btn-primary" do%>
+   Crear un nuevo adminstrador
+<%end%>
+<table class="table">
+	<caption>Tabla de administradores</caption>
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Email</th>
+			<th colspan="2" rowspan="" headers="" scope=""></th>
+		</tr>
+	</thead>
+	<tbody>
+	   <% @admins.each do |admin| %>
+		<tr>
+			<td><%= admin.name %></td>
+			<td><%= admin.email %></td>
+			<td><%= link_to admin_update_path(id: admin.id) do %>Actualizar<%end%></td>
+			<td><%= link_to destroy_admin_path(id: admin.id) do %>Eliminar<%end%></td>
+		</tr>
+	   <%end%>
+	</tbody>
+</table>

@@ -1,8 +1,7 @@
 <h1>Panel de administración</h1>
 <div class="col-lg-12">
-	<div class="col-md-4">
-	  <%= link_to 'Nuevo usuario +', create_user_path, class: "btn btn-primary pull-right" %>
-
+	<div class="col-md-6">
+		<%= link_to 'Nuevo usuario +', create_user_path, class: "btn btn-primary pull-right" %>
 		<table class="table table-bordered">
 			<caption>Usuarios</caption>
 			<thead>
@@ -21,5 +20,25 @@
 			</tbody>
 		</table>
 		<%= link_to 'Usuarios', users_path, class: "btn btn-primary pull-right" %>
+	</div>
+	<div class="col-md-6">
+		<table class="table">
+			<caption>Administradores</caption>
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @admins.each do |admin| %>
+				<tr>
+					<td><%= admin.name %></td>
+					<td><%= admin.email %></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+		<%= link_to 'Administradores', admins_path, class: "btn btn-primary pull-right" %>
 	</div>
 </div>
