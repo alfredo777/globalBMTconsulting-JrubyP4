@@ -276,8 +276,8 @@ class ApiController < ApplicationController
       url = nil
       else
       if Rails.env == 'production'
-      filename ||= "#{Rails.root}/public#{urlx}"
-      #filename ||= "#{urlx}"
+      #filename ||= "#{Rails.root}/public#{urlx}"
+      filename ||= "#{urlx}"
       else
       filename ||= "#{Rails.root}/public#{urlx}"
       end

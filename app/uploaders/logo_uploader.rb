@@ -17,8 +17,8 @@ class LogoUploader < CarrierWave::Uploader::Base
   if Rails.env == 'development'
     storage :file
    else
-    #storage :fog
-    storage :file
+    storage :fog
+    #storage :file
   end
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
