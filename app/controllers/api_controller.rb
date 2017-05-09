@@ -139,6 +139,24 @@ class ApiController < ApplicationController
   end
 
   def create_user_app
+  end
+
+  def agregar_un_dispositivo
+    @user = UserApp.find(params[:id])
+    @device = Device.new
+    @device.user_app_id = params[:user_id]
+    @device.device = params[:device]
+    @device.system = params[:system]
+    @device.serialx = params[:serialx]
+    @device.save
+
+    if @device.save
+      notice = "Dispositivo agregado"
+      else
+      notice = "Dispositivo no agregado"
+    end
+
+    render json: {notice: notice}
 
   end
 

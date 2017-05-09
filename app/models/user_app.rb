@@ -7,4 +7,6 @@ class UserApp < ActiveRecord::Base
     mount_uploader :presentation_card_front, CardFrontUploader
     mount_uploader :bussines_avatar, LogoUploader
 
+    has_many :devices
+
 end

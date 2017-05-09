@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   get 'actualizar_rating', to: 'api#actualizar_rating', as: :actualizar_rating
   post 'actualizar_rating', to: 'api#actualizar_rating'
 
-
+  get 'agregar_un_dispositivo', to: 'api#agregar_un_dispositivo', as: :agregar_un_dispositivo
+  post 'agregar_un_dispositivo', to: 'api#agregar_un_dispositivo'
 
 end

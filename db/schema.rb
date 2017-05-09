@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507184152) do
+ActiveRecord::Schema.define(version: 20170509145317) do
 
   create_table "NCBancos", primary_key: "BancoId", force: true do |t|
     t.string   "BancoNombre",            limit: 100, null: false
@@ -1045,6 +1045,15 @@ ActiveRecord::Schema.define(version: 20170507184152) do
     t.string   "attachment"
     t.integer  "ntsub_proyectos_agenda_id", limit: 4
     t.integer  "user_app_id",               limit: 4
+  end
+
+  create_table "devices", force: true do |t|
+    t.integer  "user_app_id", limit: 4
+    t.string   "device"
+    t.string   "system"
+    t.string   "serialx"
+    t.datetime "created_at",  limit: 23
+    t.datetime "updated_at",  limit: 23
   end
 
   create_table "images", force: true do |t|
