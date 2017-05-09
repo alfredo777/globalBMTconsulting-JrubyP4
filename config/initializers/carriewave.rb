@@ -1,6 +1,4 @@
 CarrierWave.configure do |config|
-  if Rails.env == 'production'
-   CarrierWave.configure do |config|
       config.fog_provider = 'fog/aws'                        # required
       config.fog_credentials = {
         provider:              'AWS',                        # required
@@ -13,8 +11,6 @@ CarrierWave.configure do |config|
       config.fog_directory  = 'btmconsulting'                          # required
       config.fog_public     = false                                        # optional, defaults to true
       #config.fog_attributes = { cache_control: "public, max-age=#{365.day.to_i}" } # optional, defaults to {}
-    end
-  end
 end
 
 
