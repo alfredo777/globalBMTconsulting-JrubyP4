@@ -5,12 +5,12 @@
 
 # Example:
 #
-set :output, "/path/logs/development.log"
+#set :output, "/path/logs/development.log"
 
-every 1.minute do
-	t = Time.now
-	puts "this is time ---> #{t}"
-end
+#every 1.minute do
+#	t = Time.now
+#	puts "this is time ---> #{t}"
+#end
 #
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
