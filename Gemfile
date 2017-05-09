@@ -29,7 +29,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'whenever', :require => false
-gem 'fog-aws', group: :production
+#gem 'fog-aws', group: :production
 
 
 # Use ActiveModel has_secure_password

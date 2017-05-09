@@ -7,7 +7,7 @@ CarrierWave.configure do |config|
       #
       # In Heroku, follow http://devcenter.heroku.com/articles/config-vars
       #
-      # $ heroku config:add S3_KEY=AKIAJFRFM6NIKSIJAUXQ S3_SECRET=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 S3_REGION=us-west-1 S3_ASSET_URL=https://btmconsulting.s3-website-us-west-1.amazonaws.com S3_BUCKET_NAME=btmconsulting -a btmconsulting-api
+      # $ heroku config:add S3_KEY=AKIAJFRFM6NIKSIJAUXQ S3_SECRET=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 S3_REGION=us-west-1 S3_ASSET_URL=https://btmconsulting-api.herokuapp.com/ S3_BUCKET_NAME=btmconsulting -a btmconsulting-api
    
       # Configuration for Amazon S3
       :provider               => 'AWS',                        # required
