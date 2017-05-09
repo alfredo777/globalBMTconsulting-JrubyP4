@@ -113,17 +113,9 @@ class ApiController < ApplicationController
       n = "Usuario Validado"
       active = true
       userz = user
-
-      if File.file?(user.avatar.xsmall.url)
-      avatar_mini = oppen_images(user.avatar.xsmall.url) 
-      else
-      avatar_mini = "" 
-      end
-      if File.file?(user.avatar.full.url)
-      avatar_large = oppen_images(user.avatar.full.url)
-      else
-      avatar_large = ""
-      end
+      puts "zzzzz #{user.avatar.xsmall.url}"
+      avatar_mini = oppen_images("#{user.avatar.xsmall.url}") 
+      avatar_large = oppen_images("#{user.avatar.full.url}")
       puts n
     else
       n = "Usuario no validado"
@@ -171,8 +163,8 @@ class ApiController < ApplicationController
       noticex = "El avatar no fue agregaco"
     end
 
-    avatar_mini = oppen_images(user.avatar.xsmall.url) 
-    avatar_large = oppen_images(user.avatar.full.url)
+    avatar_mini = oppen_images("#{user.avatar.xsmall.url}") 
+    avatar_large = oppen_images("#{user.avatar.full.url}")
 
     render json: {notice: noticex, avatar_mini: avatar_mini, avatar_large: avatar_large}
   end
@@ -275,18 +267,10 @@ class ApiController < ApplicationController
     if urlx.nil?
       url = nil
       else
-      if Rails.env == 'production'
-      #filename ||= "#{Rails.root}/public#{urlx}"
-      filename ||= "#{urlx}"
-      else
-      filename ||= "#{Rails.root}/public#{urlx}"
-      end
-      #url = File.binread(filename)
-      #binary = url.unpack('B*')
-      #binary = binary[0]
-      #url = Base64.encode64(url)
-      url = Base64.encode64(open(filename).to_a.join)
+      url = Base64.encode64(open(urlx).to_a.join)
+      puts url
     end
+
     url
   end
 end

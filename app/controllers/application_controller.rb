@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
       url = nil
       else
       if Rails.env == 'production'
-      filename ||= "https://btmconsulting-api.herokuapp.com/#{urlx}"
+      filename ||= "#{urlx}"
 
       #filename ||= "#{urlx}"
       else
