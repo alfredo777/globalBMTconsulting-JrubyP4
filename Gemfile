@@ -31,6 +31,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'whenever', :require => false
+gem 'excon'
 
 
 # Use ActiveModel has_secure_password

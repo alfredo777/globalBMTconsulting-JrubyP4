@@ -15,7 +15,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   end
     
   if Rails.env == 'development'
-    storage :file
+    storage :fog
    else
     storage :fog
     #storage :file

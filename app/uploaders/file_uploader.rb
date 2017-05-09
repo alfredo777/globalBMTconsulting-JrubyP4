@@ -3,7 +3,7 @@ class FileUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
     
   if Rails.env == 'development'
-    storage :file
+    storage :fog
    else
     storage :fog
     #storage :file

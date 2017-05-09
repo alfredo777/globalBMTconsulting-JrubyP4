@@ -162,6 +162,7 @@ DEPENDENCIES
   bootstrap-sass
   carrierwave
   coffee-rails (~> 4.0.0)
+  excon
   fog-aws
   font-awesome-sass (~> 4.7.0)
   jbuilder (~> 2.0)

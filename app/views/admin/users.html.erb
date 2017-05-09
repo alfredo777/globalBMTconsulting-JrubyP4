@@ -12,7 +12,7 @@
 	<tbody>
 		<%@users.each do |u| %>
 		<tr>
-		    <td> <%= image_tag u.avatar.xsmall %></td>
+		    <td> <%= image_tag(u.avatar.xsmall, width: '100px') %></td>
 			<td><%= "#{u.first_name} #{u.last_name}"%></td>
 			<td><%= "#{u.email}"%></td>
 			<td> <%= link_to destroy_user_path(id: u.id), data: { confirm: '¿Estas segura de eliminar el usuario?' } do %> Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i>  <%end%> </td>

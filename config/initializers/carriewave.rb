@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  if Rails.env == 'production'
+  #if Rails.env == 'production'
     Excon.defaults[:ciphers] = 'DEFAULT'
     config.fog_provider = 'fog/aws' 
     config.fog_credentials = {
@@ -13,9 +13,9 @@ CarrierWave.configure do |config|
    
       # Configuration for Amazon S3
       :provider               => 'AWS',                        # required
-      :aws_access_key_id     => ENV['S3_KEY'],
-      :aws_secret_access_key => ENV['S3_SECRET'],
-      :region                => ENV['S3_REGION'],
+      :aws_access_key_id     => 'AKIAJFRFM6NIKSIJAUXQ', #ENV['S3_KEY'],
+      :aws_secret_access_key => '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', #ENV['S3_SECRET'],
+      :region                =>  'us-west-1' #ENV['S3_REGION'],
       #:host =>                 'agora.rockstars.mx',             # optional, defaults to nil
       #:endpoint =>              'https://agora-shapes-and-forms.s3-website-us-west-1.amazonaws.com' # optional, defaults to nil
 
@@ -31,9 +31,9 @@ CarrierWave.configure do |config|
     end
    
     config.cache_dir = "#{Rails.root}/tmp/uploads"                  # To let CarrierWave work on heroku
-    config.fog_directory  = ENV['S3_BUCKET_NAME']
+    config.fog_directory  =  'btmconsulting' #ENV['S3_BUCKET_NAME']
     config.fog_public     = false 
     #config.s3_access_policy = :public_read                          # Generate http:// urls. Defaults to :authenticated_read (https://)
     #config.fog_host         = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
-  end
+  #end
 end
