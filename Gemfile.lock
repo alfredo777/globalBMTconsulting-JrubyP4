@@ -295,7 +295,6 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   fog
-  fog-aws
   font-awesome-sass (~> 4.7.0)
   jbuilder (~> 2.0)
   jquery-rails
