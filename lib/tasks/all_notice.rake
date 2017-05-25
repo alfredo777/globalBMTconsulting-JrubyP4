@@ -1,6 +1,6 @@
 namespace :notice do
 
-	task :all do
+	task :all => :environment do
 		######## envia una notificación a todos los dispositovos en la base de datos ###########
     @notice = "Enviando una notificación a todos los dispositivos 'prueba'"
 	  @devices = Device.all
