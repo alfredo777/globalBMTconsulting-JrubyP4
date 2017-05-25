@@ -105,6 +105,11 @@ class ApiController < ApplicationController
     user = UserApp.find_by_email(params[:email])
     puts "#{params[:password]}"
     puts "#{params[:email]}"
+
+    puts params[:device]
+    puts params[:name]
+    puts params[:cordova]
+    puts params[:version]
      
     @pass = Digest::SHA2.hexdigest("#{params[:password]}")
     puts user.password + "(1"
@@ -116,6 +121,16 @@ class ApiController < ApplicationController
       puts "zzzzz #{user.avatar.xsmall.url}"
       avatar_mini = oppen_images("#{user.avatar.xsmall.url}") 
       avatar_large = oppen_images("#{user.avatar.full.url}")
+      device = user.devices.new
+      device.device = params[:device].to_s
+      device.system = params[:system].to_s
+      device.serialx = params[:serialx].to_s
+      device.save
+      if device.system == "iOS"
+      send_notice(device.device, "Welcom to BTM")
+      end
+      puts ">>>>>>>>>>>>>> #{user.devices.count}"
+      puts device
       puts n
     else
       n = "Usuario no validado"
@@ -268,7 +283,6 @@ class ApiController < ApplicationController
       url = nil
       else
       url = Base64.encode64(open(urlx).to_a.join)
-      puts url
     end
 
     url

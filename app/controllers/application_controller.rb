@@ -33,6 +33,26 @@ class ApplicationController < ActionController::Base
     array_comments
   end
 
+  def send_notice(device,notice)
+    app = Rpush::Apns::App.find_by_name("gbtm")
+    if app.nil?
+      app = Rpush::Apns::App.new
+      app.name = "gbtm"
+      app.certificate = File.read("#{Rails.root}/public/certs/push.pem")
+      app.environment = "development" # APNs environment.
+      app.password = "merol777c"
+      app.connections = 1
+      app.save!
+    end
+    n = Rpush::Apns::Notification.new
+    n.app = app
+    n.device_token = "#{device}" # 64-character hex string
+    n.alert = "#{notice}"
+    n.data = { foo: :bar }
+    n.sound = "default"
+    n.save!
+  end
+
   def get_image(urlx)
     if urlx.nil?
       url = nil

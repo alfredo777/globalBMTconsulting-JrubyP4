@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509145317) do
+ActiveRecord::Schema.define(version: 20170525003225) do
 
   create_table "NCBancos", primary_key: "BancoId", force: true do |t|
     t.string   "BancoNombre",            limit: 100, null: false
@@ -1072,6 +1072,88 @@ ActiveRecord::Schema.define(version: 20170509145317) do
     t.datetime "created_at",   limit: 23
     t.datetime "updated_at",   limit: 23
   end
+
+  create_table "rails_push_notifications_apns_apps", force: true do |t|
+    t.text     "apns_dev_cert"
+    t.text     "apns_prod_cert"
+    t.boolean  "sandbox_mode"
+    t.datetime "created_at",     limit: 23, null: false
+    t.datetime "updated_at",     limit: 23, null: false
+  end
+
+  create_table "rails_push_notifications_gcm_apps", force: true do |t|
+    t.string   "gcm_key"
+    t.datetime "created_at", limit: 23, null: false
+    t.datetime "updated_at", limit: 23, null: false
+  end
+
+  create_table "rails_push_notifications_mpns_apps", force: true do |t|
+    t.text     "cert"
+    t.datetime "created_at", limit: 23, null: false
+    t.datetime "updated_at", limit: 23, null: false
+  end
+
+  create_table "rpush_apps", force: true do |t|
+    t.string   "name",                                           null: false
+    t.string   "environment"
+    t.text     "certificate"
+    t.string   "password"
+    t.integer  "connections",             limit: 4,  default: 1, null: false
+    t.datetime "created_at",              limit: 23
+    t.datetime "updated_at",              limit: 23
+    t.string   "type",                                           null: false
+    t.string   "auth_key"
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "access_token"
+    t.datetime "access_token_expiration", limit: 23
+  end
+
+  create_table "rpush_feedback", force: true do |t|
+    t.string   "device_token", limit: 64, null: false
+    t.datetime "failed_at",    limit: 23, null: false
+    t.datetime "created_at",   limit: 23
+    t.datetime "updated_at",   limit: 23
+    t.integer  "app_id",       limit: 4
+  end
+
+  add_index "rpush_feedback", ["device_token"], name: "index_rapns_feedback_on_device_token"
+
+  create_table "rpush_notifications", force: true do |t|
+    t.integer  "badge",             limit: 4
+    t.string   "device_token",      limit: 64
+    t.string   "sound",                        default: "default"
+    t.text     "alert"
+    t.text     "data"
+    t.integer  "expiry",            limit: 4,  default: 86400
+    t.boolean  "delivered",                    default: false,     null: false
+    t.datetime "delivered_at",      limit: 23
+    t.boolean  "failed",                       default: false,     null: false
+    t.datetime "failed_at",         limit: 23
+    t.integer  "error_code",        limit: 4
+    t.text     "error_description"
+    t.datetime "deliver_after",     limit: 23
+    t.datetime "created_at",        limit: 23
+    t.datetime "updated_at",        limit: 23
+    t.boolean  "alert_is_json",                default: false
+    t.string   "type",                                             null: false
+    t.string   "collapse_key"
+    t.boolean  "delay_while_idle",             default: false,     null: false
+    t.text     "registration_ids"
+    t.integer  "app_id",            limit: 4,                      null: false
+    t.integer  "retries",           limit: 4,  default: 0
+    t.string   "uri"
+    t.datetime "fail_after",        limit: 23
+    t.boolean  "processing",                   default: false,     null: false
+    t.integer  "priority",          limit: 4
+    t.text     "url_args"
+    t.string   "category"
+    t.boolean  "content_available",            default: false
+    t.text     "notification"
+  end
+
+  add_index "rpush_notifications", ["app_id", "delivered", "failed", "deliver_after"], name: "index_rapns_notifications_multi"
+  add_index "rpush_notifications", ["delivered", "failed"], name: "index_rpush_notifications_multi"
 
 # Could not dump table "sysdiagrams" because of following StandardError
 #   Unknown type 'sysname(128)' for column 'name'
