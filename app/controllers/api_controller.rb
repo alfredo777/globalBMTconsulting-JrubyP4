@@ -126,12 +126,12 @@ class ApiController < ApplicationController
       device.system = params[:system].to_s
       device.serialx = params[:serialx].to_s
       device.save
-      if device.system == "iOS"
-      send_notice(device.device, "Welcom to BTM")
-      end
       puts ">>>>>>>>>>>>>> #{user.devices.count}"
       puts device
       puts n
+      if device.system == "iOS"
+      send_notice(device.device, "Welcom to BTM #{user.first_name}")
+      end
     else
       n = "Usuario no validado"
       active = false
@@ -140,7 +140,6 @@ class ApiController < ApplicationController
       avatar_large = ""
       puts n
     end
-    
 
     render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, notice: n}, :callback => params[:callback]
   end

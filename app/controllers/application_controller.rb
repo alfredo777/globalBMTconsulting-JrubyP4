@@ -34,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def send_notice(device,notice)
+    sleep 2
     app = Rpush::Apns::App.find_by_name("gbtm")
     if app.nil?
       app = Rpush::Apns::App.new
