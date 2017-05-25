@@ -51,6 +51,8 @@ class ApplicationController < ActionController::Base
     n.data = { foo: :bar }
     n.sound = "default"
     n.save!
+
+    Rpush.push
   end
 
   def get_image(urlx)
