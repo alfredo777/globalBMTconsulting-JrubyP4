@@ -97,7 +97,8 @@ class ApiController < ApplicationController
 
     }
 
-
+    no_relative_agenda = no_relative_agenda.order("fecha_cita DESC")
+    
     render json: {non_relative: no_relative_agenda, agenda_full: agenda }
   end
 

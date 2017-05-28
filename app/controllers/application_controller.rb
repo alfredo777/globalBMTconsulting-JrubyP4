@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   #phonegap push --deviceID 4fc636651f92262bf08bc92cdf6a13e5ae9c191d150ae6ddb65e6af8b8419656 --service apns --payload '{ "aps": { "alert": "Hello World" } }'
   #phonegap push --deviceID 4fc636651f92262bf08bc92cdf6a13e5ae9c191d150ae6ddb65e6af8b8419656 --service gcm --payload '{ "data": { "title": "Hello", "message": "World"} }'
   def agenda(access_agenda)
-  	@agenda = Ntsubproyectosagenda.where(SubProyectoId: access_agenda.SubProyectoId).order("FechaCita DESC")
+  	@agenda = Ntsubproyectosagenda.where(SubProyectoId: access_agenda.SubProyectoId)
   end
 
   def contacto(id)
