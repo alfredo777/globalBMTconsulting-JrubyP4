@@ -97,7 +97,7 @@ class ApiController < ApplicationController
 
     }
 
-    no_relative_agenda = no_relative_agenda.sort { |x, y| x.last[:fecha_cita] <=> y.last[:fecha_cita] }
+    no_relative_agenda = no_relative_agenda.sort {|vn1, vn2| vn2[:fecha_cita] <=> vn1[:fecha_cita]}
 
     render json: {non_relative: no_relative_agenda, agenda_full: agenda }
   end
