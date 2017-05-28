@@ -217,18 +217,26 @@ class ApiController < ApplicationController
     else
       notice = "No se ha podido agregar el Comentario"
     end
+    
+    #attachment: get_image(@comment.attachment.url),
 
 
     commentx = {
      id: @comment.id,
      coment_text: @comment.coment_text,
-     attachment: get_image(@comment.attachment.url),
+     attachment: "http://btmconsulting-api.herokuapp.com/attachment/#{@comment.id}"
      created_at: @comment.created_at
     }
 
     puts commentx
 
     render json: {comment: commentx, notice: notice}
+  end
+
+  def attachment_in
+    @comment = Comment.find(params[:id])
+    @url = @comment.attachment.url
+
   end
 
   def eliminar_comentario

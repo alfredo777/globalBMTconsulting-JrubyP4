@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
       array_comments.push({
          id: c.id,
          coment_text: c.coment_text,
-         attachment: get_image(c.attachment.url),
+         attachment: "http://btmconsulting-api.herokuapp.com/attachment/#{c.id}",
          created_at: c.created_at
         })
     end

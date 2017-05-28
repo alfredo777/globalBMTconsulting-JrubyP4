@@ -15,8 +15,7 @@ CarrierWave.configure do |config|
       :provider               => 'AWS',                        # required
       :aws_access_key_id      => 'AKIAJFRFM6NIKSIJAUXQ', #ENV['S3_KEY'],
       :aws_secret_access_key  => '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', #ENV['S3_SECRET'],
-      :region                 => 'us-west-1',
-      :endpoint               => 'https://s3-us-west-1.amazonaws.com'
+      :region                 => 'us-west-1'
       #:host =>                 'agora.rockstars.mx',             # optional, defaults to nil
       #:endpoint =>              'https://agora-shapes-and-forms.s3-website-us-west-1.amazonaws.com' # optional, defaults to nil
 

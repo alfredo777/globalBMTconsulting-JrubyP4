@@ -49,6 +49,8 @@ Rails.application.routes.draw do
 
   get 'agenda_usuario', to: 'api#agenda_usuario', as: :agenda_usuario
 
+  get 'attachment/:id', to: 'api#attachment_in', as: :attachment
+
   get 'agenda_usuario_json', to: 'api#agenda_usuario_json', as: :agenda_usuario_json
 
   get 'verificador_de_password', to: 'api#verificador_de_password', as: :verificador_de_password
