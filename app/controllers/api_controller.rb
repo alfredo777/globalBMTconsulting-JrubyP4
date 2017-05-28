@@ -224,7 +224,7 @@ class ApiController < ApplicationController
     commentx = {
      id: @comment.id,
      coment_text: @comment.coment_text,
-     attachment: "http://btmconsulting-api.herokuapp.com/attachment/#{@comment.id}"
+     attachment: "http://btmconsulting-api.herokuapp.com/attachment/#{@comment.id}",
      created_at: @comment.created_at
     }
 
