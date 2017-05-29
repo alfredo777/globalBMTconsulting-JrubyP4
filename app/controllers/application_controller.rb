@@ -54,6 +54,8 @@ class ApplicationController < ActionController::Base
     n.save!
 
     Rpush.push
+    Rpush.push
+
   end
 
   def get_image(urlx)
