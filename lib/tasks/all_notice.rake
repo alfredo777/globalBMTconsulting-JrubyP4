@@ -29,6 +29,12 @@ namespace :notice do
     Rpush.push
   end
 
+  task :clean => :environment do
+   nt =	Rpush::Apns::Notification.all
+   puts nt.count
+   nt.destroy_all
+  end
+
   task :one_day_notices => :environment do
   	@user_app = UserApp.all
   	@user_app.each do |user_app|
