@@ -130,9 +130,9 @@ class ApiController < ApplicationController
       puts ">>>>>>>>>>>>>> #{user.devices.count}"
       puts device
       puts n
-      if device.system == "iOS"
-      send_notice(device.device, "Welcom to BTM #{user.first_name}")
-      end
+      #if device.system == "iOS"
+      #send_notice(device.device, "Welcom to BTM #{user.first_name}")
+      #end
     else
       n = "Usuario no validado"
       active = false
