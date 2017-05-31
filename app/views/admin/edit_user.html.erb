@@ -21,7 +21,7 @@
 	    	<%end%>
 	    </select><br/><br/><br/>
 	    <div class="btn btn-primary pull-right" id="add_count">Agregar cuenta</div><br/><br/><br/><br/>
-	    <%= text_area_tag 'accounts_array', '', placeholder: 'Cuentas extras', class: 'form-control' %>
+	    <%= text_area_tag 'accounts_array', @user.accounts_array , placeholder: 'Cuentas extras', class: 'form-control' %>
 	</div>
 	<div class="col-md-1"></div>
 	<div class="col-md-5 panel panel-default" style="padding: 20px;">
