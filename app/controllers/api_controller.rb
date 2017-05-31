@@ -142,7 +142,7 @@ class ApiController < ApplicationController
       puts n
     end
 
-    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, extracounts: user.have_users_extra_accounts, accounts_array: user.accounts_array,notice: n}, :callback => params[:callback]
+    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, extracounts: user.have_users_extra_accounts, array_acounts: [user.accounts_array],notice: n}, :callback => params[:callback]
   end
 
   def create_user_app

@@ -16,7 +16,7 @@
 		    <option value="">Selecciona una opcción ...</option>
 		    <% @nccliente.each do |cc| %>
 		    <% if "#{cc.Mail}" != '' %>
-	    	<option value="{'name': <%= cc.ClienteNombre.truncate(60) %>, 'email': <%= cc.Mail %>}"><%= cc.ClienteNombre.truncate(60) %></option>
+	    	<option value="{'name':' <%= cc.ClienteNombre.truncate(60) %>', 'email': '<%= cc.Mail %>'}"><%= cc.ClienteNombre.truncate(60) %></option>
 	    	<%end%>
 	    	<%end%>
 	    </select><br/><br/><br/>
