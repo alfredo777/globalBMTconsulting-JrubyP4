@@ -16,7 +16,7 @@
 		    <option value="">Selecciona una opcción ...</option>
 		    <% @nccliente.each do |cc| %>
 		    <% if "#{cc.Mail}" != '' %>
-	    	<option value="{name: <%= cc.ClienteNombre.truncate(60) %>, email: <%= cc.Mail %>}"><%= cc.ClienteNombre.truncate(60) %></option>
+	    	<option value="{'name': <%= cc.ClienteNombre.truncate(60) %>, 'email': <%= cc.Mail %>}"><%= cc.ClienteNombre.truncate(60) %></option>
 	    	<%end%>
 	    	<%end%>
 	    </select><br/><br/><br/>
@@ -35,3 +35,20 @@
 	</div>
 	<%end%>
 </div>
+
+<script>
+	$('#selec_xcv').change(function(){
+		  var value = $(this).find("option:selected").attr('value');
+		  $('#add_count').data('selected-item', value);
+	});
+	$('#add_count').click(function(){
+		var datax = $('#add_count').data('selected-item');
+		if ($('#accounts_array').val() == ''){
+		var dota  = datax;
+	    }else{
+	    var dota  = $('#accounts_array').val()+','+ datax;
+	    }
+		$('#accounts_array').val(dota);
+	});
+
+</script>
