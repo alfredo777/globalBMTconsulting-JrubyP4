@@ -41,6 +41,7 @@ class AdminController < ApplicationController
 
   def edit_user
   	@user = UserApp.find(params[:id])
+    @nccliente =  Nccliente.all
   end
 
   def update_user
