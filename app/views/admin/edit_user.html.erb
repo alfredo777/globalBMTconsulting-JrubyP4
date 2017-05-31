@@ -9,6 +9,19 @@
 		<%= text_field_tag 'linkedin', @user.linkedin, placeholder: 'linkedin', class: 'form-control' %><br/>
 		<%= text_field_tag 'email', @user.email, placeholder: 'email', class: 'form-control' %><br/>
 		<%= password_field_tag 'password', '', placeholder: 'password', class: 'form-control' %>
+		<br/><br/>
+	    <p>Cuentas Agregadas a este usuario:</p><br/>
+		<select name="select" class="form-controll" id="selec_xcv">
+
+		    <option value="">Selecciona una opcción ...</option>
+		    <% @nccliente.each do |cc| %>
+		    <% if "#{cc.Mail}" != '' %>
+	    	<option value="[<%= cc.ClienteNombre.truncate(60) %>,<%= cc.Mail %>]"><%= cc.ClienteNombre.truncate(60) %></option>
+	    	<%end%>
+	    	<%end%>
+	    </select><br/><br/><br/>
+	    <div class="btn btn-primary pull-right" id="add_count">Agregar cuenta</div><br/><br/><br/><br/>
+	    <%= text_area_tag 'accounts_array', '', placeholder: 'Cuentas extras', class: 'form-control' %>
 	</div>
 	<div class="col-md-1"></div>
 	<div class="col-md-5 panel panel-default" style="padding: 20px;">

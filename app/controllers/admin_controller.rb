@@ -6,6 +6,8 @@ class AdminController < ApplicationController
   end
 
   def create_user
+    @nccliente =  Nccliente.all
+
   end
 
   def newest_user
@@ -19,6 +21,10 @@ class AdminController < ApplicationController
   	 @user.avatar = params[:avatar]
   	 @user.bussines_avatar = params[:bussines_avatar]
   	 @user.email = params[:email]
+     @user.accounts_array = params[:accounts_array]
+     if params[:accounts_array] != ''
+      @user.have_users_extra_accounts = true
+     end
   	 @user.salt = SecureRandom.hex(32)
   	 @user.save
 
@@ -49,7 +55,10 @@ class AdminController < ApplicationController
      puts "password modify"
   	 @user.password = Digest::SHA2.hexdigest("#{params[:password]}")
      end
-
+     @user.accounts_array = params[:accounts_array]
+     if params[:accounts_array] != ''
+      @user.have_users_extra_accounts = true
+     end
   	 @user.avatar = params[:avatar] if !params[:avatar].nil?
   	 @user.bussines_avatar = params[:bussines_avatar] if !params[:bussines_avatar].nil?
   	 @user.email = params[:email] if !params[:email].nil?

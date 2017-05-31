@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525003225) do
+ActiveRecord::Schema.define(version: 20170530181439) do
 
   create_table "NCBancos", primary_key: "BancoId", force: true do |t|
     t.string   "BancoNombre",            limit: 100, null: false
@@ -1172,6 +1172,8 @@ ActiveRecord::Schema.define(version: 20170525003225) do
     t.string   "avatar"
     t.string   "bussines_avatar"
     t.string   "email"
+    t.text     "accounts_array"
+    t.boolean  "have_users_extra_accounts",            default: false
   end
 
 end

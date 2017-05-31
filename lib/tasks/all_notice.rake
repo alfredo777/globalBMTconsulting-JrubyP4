@@ -173,7 +173,7 @@ namespace :notice do
 	  		  puts "Subproyecto #{@subproyecto.SubProyectoId}"
 	        @contacto = Nccontacto.first
 	  		 	puts "Contacto #{@contacto.ContactoId}"
-	  		 	@fechacita = DateTime.now + 1.day - 5.hour 
+	  		 	@fechacita = DateTime.now + 50.minutes
 	  		 	@fechacita = @fechacita.strftime('%FT%T')
 	  		 	@lugar = "Hotel Sheraton Maria Isabel Reforma"
 	  		 	@agenda =	Ntsubproyectosagenda.new
