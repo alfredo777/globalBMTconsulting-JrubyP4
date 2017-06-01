@@ -133,16 +133,19 @@ class ApiController < ApplicationController
       #if device.system == "iOS"
       #send_notice(device.device, "Welcom to BTM #{user.first_name}")
       #end
-      evaluate_array = eval("["+user.accounts_array+"]")
       param_array = []
-      evaluate_array.each do |ec|
-        puts "#{ec[:name]}/#{ec[:email]}" 
-        param_array.push({
-          name: ec[:name],
-          email: ec[:email]
-        })
+      if user.have_users_extra_accounts == true
+        evaluate_array = eval("["+user.accounts_array+"]")
+        evaluate_array.each do |ec|
+          puts "#{ec[:name]}/#{ec[:email]}" 
+          param_array.push({
+            name: ec[:name],
+            email: ec[:email]
+          })
+        end
       end
       evaluate_array = param_array
+      extracounts = user.have_users_extra_accounts
     else
       n = "Usuario no validado"
       active = false
@@ -150,10 +153,11 @@ class ApiController < ApplicationController
       avatar_mini = ""
       avatar_large = ""
       evaluate_array = ""
+      extracounts = false
       puts n
     end
 
-    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, extracounts: user.have_users_extra_accounts, array_acounts: evaluate_array, notice: n}, :callback => params[:callback]
+    render json: {user: user, avatar_mini: avatar_mini, avatar_large: avatar_large , active: active, extracounts: extracounts, array_acounts: evaluate_array, notice: n}, :callback => params[:callback]
   end
 
   def create_user_app
