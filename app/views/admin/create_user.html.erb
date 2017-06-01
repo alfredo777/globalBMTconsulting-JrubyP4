@@ -20,18 +20,9 @@
 	    	<%end%>
 	    </select><br/><br/><br/>
 	    <div class="btn btn-primary pull-right" id="add_count">Agregar cuenta</div><br/><br/><br/><br/>
-	    <%= text_area_tag 'accounts_array', '', placeholder: 'Cuentas extras', class: 'form-control' %>
-	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-5 panel panel-default" style="padding: 20px;">
-	    <p>Logo de la empresa:</p><br/>
-	    <%= file_field_tag 'bussines_avatar' %><br/>
-	    <p>Tarjeta de presentación frente:</p><br/>
-	    <%= file_field_tag 'presentation_card_front' %><br/>
-	    <p>Tarjeta de presentación reverso:</p><br/>
-	    <%= file_field_tag 'presentation_card_behind' %><br/>
-	    
+	    <%= text_area_tag 'accounts_array', '', placeholder: 'Cuentas extras', class: 'form-control' %><br/><br/>
 	    <%= submit_tag 'Crear Usuario', class: "btn btn-primary pull-right" %>
+
 	</div>
 	<%end%>
 </div>

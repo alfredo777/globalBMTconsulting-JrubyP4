@@ -1,6 +1,6 @@
 <div class="col-lg-12">
 	<%= form_tag update_user_path, :multipart => true do -%>
-	<div class="col-md-6 panel panel-default" style="padding: 20px;">
+	<div class="col-md-8 panel panel-default" style="padding: 20px;">
 	    <p>Avatar del usuario:</p><br/>
 	    <%= hidden_field_tag 'id', params[:id] %>
 	    <%= file_field_tag 'avatar' %><br/>
@@ -21,17 +21,9 @@
 	    	<%end%>
 	    </select><br/><br/><br/>
 	    <div class="btn btn-primary pull-right" id="add_count">Agregar cuenta</div><br/><br/><br/><br/>
-	    <%= text_area_tag 'accounts_array', @user.accounts_array , placeholder: 'Cuentas extras', class: 'form-control' %>
-	</div>
-	<div class="col-md-1"></div>
-	<div class="col-md-5 panel panel-default" style="padding: 20px;">
-	    <p>Logo de la empresa:</p><br/>
-	    <%= file_field_tag 'bussines_avatar' %><br/>
-	    <p>Tarjeta de presentación frente:</p><br/>
-	    <%= file_field_tag 'presentation_card_front' %><br/>
-	    <p>Tarjeta de presentación reverso:</p><br/>
-	    <%= file_field_tag 'presentation_card_behind' %><br/>
+	    <%= text_area_tag 'accounts_array', @user.accounts_array , placeholder: 'Cuentas extras', class: 'form-control' %><br/><br/>
 	    <%= submit_tag 'Modificar Usuario', class: "btn btn-primary pull-right" %>
+
 	</div>
 	<%end%>
 </div>
