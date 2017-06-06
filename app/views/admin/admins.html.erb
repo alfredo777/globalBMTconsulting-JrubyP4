@@ -17,8 +17,8 @@
 		<tr>
 			<td><%= admin.name %></td>
 			<td><%= admin.email %></td>
-			<td><%= link_to admin_update_path(id: admin.id) do %>Actualizar<%end%></td>
-			<td><%= link_to destroy_admin_path(id: admin.id) do %>Eliminar<%end%></td>
+			<td><%= link_to admin_update_path(id: admin.id) do %> <i class="fa fa-pencil" aria-hidden="true"></i> Actualizar<%end%></td>
+			<td><%= link_to destroy_admin_path(id: admin.id), data: { confirm: '¿Estas segura de eliminar el administrador?' } do %>  <i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar<%end%></td>
 		</tr>
 	   <%end%>
 	</tbody>

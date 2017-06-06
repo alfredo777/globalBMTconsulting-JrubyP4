@@ -15,12 +15,12 @@
 		    <td> <%= image_tag(u.avatar.xsmall, width: '100px') %></td>
 			<td><%= "#{u.first_name} #{u.last_name}"%></td>
 			<td><%= "#{u.email}"%></td>
-			<td> <%= link_to destroy_user_path(id: u.id), data: { confirm: '¿Estas segura de eliminar el usuario?' } do %> Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i>  <%end%> </td>
 			<td> <%=link_to edit_user_path(id: u.id)  do %> Editar <i class="fa fa-pencil" aria-hidden="true"></i> <%end%> </td>
 			<td> <%=link_to agenda_usuario_path(Mail: "#{u.email}") do %>
 			     Agenda <i class="fa fa-address-book" aria-hidden="true"></i>
 			     <%end%>
 			</td>
+			<td> <%= link_to destroy_user_path(id: u.id), data: { confirm: '¿Estas segura de eliminar el usuario?' } do %> Eliminar <i class="fa fa-trash-o" aria-hidden="true"></i>  <%end%> </td>
 		</tr>
 		<%end%>
 	</tbody>
