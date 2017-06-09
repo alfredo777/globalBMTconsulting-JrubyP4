@@ -35,13 +35,13 @@ class ApplicationController < ActionController::Base
 
   def send_notice(device,notice)
     sleep 2
-    app = Rpush::Apns::App.find_by_name("gbtm")
+    app = Rpush::Apns::App.find_by_name("gbtmproduction")
     if app.nil?
       app = Rpush::Apns::App.new
-      app.name = "gbtm"
+      app.name = "gbtmproduction"
       app.certificate = File.read("#{Rails.root}/public/certs/push.pem")
       app.environment = "development" # APNs environment.
-      app.password = "merol777c"
+      app.password = "Gbmt2017"
       app.connections = 1
       app.save!
     end

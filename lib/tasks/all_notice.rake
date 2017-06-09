@@ -4,13 +4,13 @@ namespace :notice do
     @notice = "Enviando una notificación a todos los dispositivos 'prueba'"
 	  @devices = Device.all
 	
-	  app_ios = Rpush::Apns::App.find_by_name("gbtm")
+	  app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
     if app_ios.nil?
       app_ios = Rpush::Apns::App.new
-      app_ios.name = "gbtm"
+      app_ios.name = "gbtmproduction"
       app_ios.certificate = File.read("#{Rails.root}/public/certs/push.pem")
       app_ios.environment = "development" # APNs environment.
-      app_ios.password = "merol777c"
+      app_ios.password = "Gbmt2017"
       app_ios.connections = 1
       app_ios.save!
     end
@@ -63,7 +63,7 @@ namespace :notice do
 	  			@contacto = Nccontacto.find_by_ContactoId(junta.ContactoId)
 	  			@notice = "You have a meeting tomorrow at #{@hora} hours in #{@lugar} with #{@contacto.ContactoNombre}"
 	  			puts @notice
-	  			  app_ios = Rpush::Apns::App.find_by_name("gbtm")
+	  			  app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
 	  			  n = Rpush::Apns::Notification.all
 	  			  clear =  n.destroy_all
 		  			user_app.devices.each do |device|
@@ -122,7 +122,7 @@ namespace :notice do
 		  			@contacto = Nccontacto.find_by_ContactoId(junta.ContactoId)
 		  			@notice = "You have a meeting today at #{@hora} hours in #{@lugar} with #{@contacto.ContactoNombre}"
 		  			puts @notice
-		  			  app_ios = Rpush::Apns::App.find_by_name("gbtm")
+		  			  app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
 		  			  n = Rpush::Apns::Notification.all
 		  			  clear =  n.destroy_all
 			  			user_app.devices.each do |device|
