@@ -1,10 +1,9 @@
 namespace :notice do
 	task :all => :environment do
 		######## envia una notificación a todos los dispositovos en la base de datos ###########
-    @notice = "Enviando una notificación a todos los dispositivos 'prueba'"
-	@devices = Device.all
+    @notice = "Remember to check your appointments in the GBTM Consulting App"
+	  @devices = Device.all
 	
-		app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
 		#app_android = Rpush::Gcm::App.find_by_name("gbtmproduction")
 		#if app_android.nil?
 		#	app = Rpush::Gcm::App.new
@@ -13,7 +12,7 @@ namespace :notice do
 		#	app.connections = 1
 		#	app.save!
 		#end
-	
+		app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
     if app_ios.nil?
       app_ios = Rpush::Apns::App.new
       app_ios.name = "gbtmproduction"
@@ -45,7 +44,9 @@ namespace :notice do
   end
 
   task :remove_apps => :environment do 
-    apps_ios = Rpush::Apns::App.destroy_all
+    app_ios = Rpush::Apns::App.all
+    puts app_ios.count
+    app_ios.destroy_all
   end 
 
   task :one_day_notices => :environment do
