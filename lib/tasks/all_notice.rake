@@ -44,7 +44,7 @@ namespace :notice do
    nt.destroy_all
   end
 
-  task :remove_apps => do 
+  task :remove_apps => :environment do 
     apps_ios = Rpush::Apns::App.destroy_all
   end 
 
