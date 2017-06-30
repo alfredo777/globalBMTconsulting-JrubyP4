@@ -2,15 +2,24 @@ namespace :notice do
 	task :all => :environment do
 		######## envia una notificación a todos los dispositovos en la base de datos ###########
     @notice = "Enviando una notificación a todos los dispositivos 'prueba'"
-	  @devices = Device.all
+	@devices = Device.all
 	
-	  app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
+		app_ios = Rpush::Apns::App.find_by_name("gbtmproduction")
+		#app_android = Rpush::Gcm::App.find_by_name("gbtmproduction")
+		#if app_android.nil?
+		#	app = Rpush::Gcm::App.new
+		#	app.name = "gbtmproduction"
+		#	app.auth_key = "Globalbmt2017"
+		#	app.connections = 1
+		#	app.save!
+		#end
+	
     if app_ios.nil?
       app_ios = Rpush::Apns::App.new
       app_ios.name = "gbtmproduction"
       app_ios.certificate = File.read("#{Rails.root}/public/certs/push.pem")
       app_ios.environment = "development" # APNs environment.
-      app_ios.password = "Gbmt2017"
+      app_ios.password = "Globalbmt2017"
       app_ios.connections = 1
       app_ios.save!
     end
@@ -34,6 +43,10 @@ namespace :notice do
    puts nt.count
    nt.destroy_all
   end
+
+  task :remove_apps => do 
+    apps_ios = Rpush::Apns::App.destroy_all
+  end 
 
   task :one_day_notices => :environment do
   	@user_app = UserApp.all
