@@ -13,5 +13,12 @@
 /public/uploads/*
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore Byebug command history file.
+.byebug_history
+*.DS_Store
+*._.DS_Store

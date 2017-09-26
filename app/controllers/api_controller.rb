@@ -120,8 +120,20 @@ class ApiController < ApplicationController
       active = true
       userz = user
       puts "zzzzz #{user.avatar.xsmall.url}"
-      avatar_mini = oppen_images("#{user.avatar.xsmall.url}") 
-      avatar_large = oppen_images("#{user.avatar.full.url}")
+      if !user.avatar.blank?
+        puts user.avatar.nil?
+        puts user.avatar.blank?
+        puts "Avatar #{user.avatar}"
+        puts "Avatar 1: #{user.avatar.xsmall.url}"
+        puts "Avatar 1: #{user.avatar.full.url}"
+        avatar_mini = oppen_images("#{user.avatar.xsmall.url}")
+        avatar_large = oppen_images("#{user.avatar.full.url}")
+      else
+      avatar_xcahnge = "#{Rails.root}/public/avatarsingle.png"
+      puts avatar_xcahnge
+      avatar_mini = oppen_images(avatar_xcahnge) 
+      avatar_large = avatar_mini
+      end
       device = user.devices.new
       device.device = params[:device].to_s
       device.system = params[:system].to_s
