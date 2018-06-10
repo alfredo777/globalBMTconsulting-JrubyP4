@@ -1,6 +1,7 @@
 <div class="col-lg-12">
     <%=link_to 'Regresar a los usuarios', users_path, class: "btn btn-primary pull-right"  %>
-    <%= link_to 'Ver en JSON', agenda_usuario_json_path(Mail: @cliente.Mail), class: "btn btn-primary pull-right" %>
+    <% if @activecliente %>
+    <%= link_to 'Ver en JSON', agenda_usuario_json_path(Mail: @cliente.Mail), class: "btn btn-primary pull-right" if @json %>
 	<table class="table table-bordered">
 		<caption>Usuario encontrado en la agenda de usuarios</caption>
 		<thead>
@@ -121,4 +122,28 @@
 
 		<%end%>
 	</div>
+	<%else%>
+	<h2>A este usuario le han sido asignados varios usuarios no es un usuario particular en el rol.</h2>
+	    <table class="table table-bordered">
+	    	<thead>
+	    		<th>Nombre</th>
+	    		<th>Email </th>
+	    		<th>Link</th>
+	    	</thead>
+	    	<tbody>
+	    		<% evaluate_array = eval("["+@usuario.accounts_array+"]") %>
+	    		<% evaluate_array.each do |i| %>
+	    		<tr>
+	    			<td><%= i[:name] %></td>
+	    			<td><%= i[:email] %></td>
+	    			<td> <%=link_to agenda_usuario_path(Mail: "#{i[:email]}"), target: '_blank' do %>
+				     Agenda <i class="fa fa-address-book" aria-hidden="true"></i>
+				     <%end%>
+				    </td>
+	    		</tr>
+	    		<% end%>
+
+	    	</tbody>
+	    </table>
+	<%end%>
 </div>

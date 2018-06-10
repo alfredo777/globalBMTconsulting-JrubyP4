@@ -11,8 +11,21 @@ class ApiController < ApplicationController
 
   def agenda_usuario
     @cliente = Nccliente.find_by_Mail(params[:Mail])
-    @subproyectos = Ntsubproyecto.where(ClienteId: @cliente.ClienteId)
-    @proyectos = Ntproyecto.where(ClienteId: @cliente.ClienteId)
+
+    if !@cliente.blank? 
+       @subproyectos = Ntsubproyecto.where(ClienteId: @cliente.ClienteId)
+       @proyectos = Ntproyecto.where(ClienteId: @cliente.ClienteId)
+       @json = true
+       @activecliente = true
+    else
+      @usuario = UserApp.find_by_email(params[:Mail])
+      @subproyectos = ""
+      @proyectos = ""
+      @json = false
+      @activecliente = false
+
+    end
+  
   end
 
   def agenda_usuario_json
