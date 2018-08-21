@@ -162,7 +162,7 @@ class AdminController < ApplicationController
   end
 
   def users
-  	@users = UserApp.paginate(:page => params[:page], :per_page => 3)
+  	@users = UserApp.paginate(:page => params[:page], :per_page => 30)
   end
 
   def calendar_table
